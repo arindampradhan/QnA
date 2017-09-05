@@ -45,6 +45,6 @@ def register():
             session['username'] = request.form['username']
             return redirect(url_for('index'))
 
-        return 'That username already exists!'
+        return render_template('message.html', status='409', message='That username already exists!')
 
     return render_template('register.html')
