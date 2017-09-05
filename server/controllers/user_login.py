@@ -45,6 +45,9 @@ def logout():
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    if session.get('username'):
+        return redirect(url_for('index'))
+
     if request.method == 'POST':
         existing_user = db.user.find_one({'name': request.form['username']})
 

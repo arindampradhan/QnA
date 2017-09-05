@@ -93,36 +93,12 @@
 								<p class="hidden-lg hidden-md">Dashboard</p>
                             </a>
                         </li>
-                        <li class="dropdown">
-                              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                    <i class="fa fa-globe"></i>
-                                    <b class="caret hidden-sm hidden-xs"></b>
-                                    <span class="notification hidden-sm hidden-xs">5</span>
-									<p class="hidden-lg hidden-md">
-										5 Notifications
-										<b class="caret"></b>
-									</p>
-                              </a>
-                              <ul class="dropdown-menu">
-                                <li><a href="#">Notification 1</a></li>
-                                <li><a href="#">Notification 2</a></li>
-                                <li><a href="#">Notification 3</a></li>
-                                <li><a href="#">Notification 4</a></li>
-                                <li><a href="#">Another notification</a></li>
-                              </ul>
-                        </li>
-                        <li>
-                           <a href="">
-                                <i class="fa fa-search"></i>
-								<p class="hidden-lg hidden-md">Search</p>
-                            </a>
-                        </li>
                     </ul>
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
                            <a href="#">
-                               <p>User Name</p>
+                               <p id="user_name">User Name</p>
                             </a>
                         </li>
                         <li>
@@ -130,6 +106,7 @@
                                 <p>Log out</p>
                             </a>
                         </li>
+                        <li class="separator hidden-lg hidden-md"></li>
                         <li>
                             <a title="Github repo" href="https://github.com/arindampradhan/QnA">
                                 <p><i class="fa fa-github-alt" aria-hidden="true"></i></p>
@@ -152,7 +129,7 @@
                                 <p class="category">Total number of users for QnA</p>
                             </div>
                             <div class="content">
-                                <h1>99</h1>
+                                <h1 id="user_count">99</h1>
                             </div>
                         </div>
                     </div>
@@ -167,7 +144,7 @@
                                 <p class="category">Total number of questions asked!</p>
                             </div>
                             <div class="content">
-                                <h1>33</h1>
+                                <h1 id="total_questions">33</h1>
                             </div>
                         </div>
                     </div>
@@ -281,6 +258,8 @@
 
 	<!-- Light Bootstrap Table DEMO methods, don't include it in your project! -->
 	<script src="/public/assets/js/demo.js"></script>
+	<script src="/public/components/store-js/dist/store.everything.min.js"></script>
+
 
 	<script type="text/javascript">
     	$(document).ready(function(){
@@ -296,5 +275,7 @@
 
     	});
 	</script>
+    <script text="text/javascript" src="/public/js/app.js"></script>
+
 
 </html>
