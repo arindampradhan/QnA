@@ -6,9 +6,9 @@
     <body>
     <br><br><br><br>
     <br><br><br><br>
-    <form class="sign-up">
+    <form class="sign-up" method=POST action="{{ url_for('login') }}">
         <h1 class="sign-up-title">Sign up in seconds</h1>
-        <input type="text" class="sign-up-input" placeholder="What's your username?" autofocus>
+        <input type="text" class="sign-up-input" name="username" placeholder="What's your username?" autofocus>
         <input type="submit" value="Sign me up!" class="sign-up-button">
         <br><br>
         <a href="/register"><button type="button" class="register-button">Go for registration</button></a>

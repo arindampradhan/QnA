@@ -34,7 +34,7 @@
 <body>
 
 <div class="wrapper">
-    <div class="sidebar" data-color="red" data-image="/static/assets/img/sidebar-5.jpg">
+    <div class="sidebar" data-color="red" data-image="/public/assets/img/sidebar-5.jpg">
 
     <!--
 
@@ -126,7 +126,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="/logout">
                                 <p>Log out</p>
                             </a>
                         </li>
@@ -272,13 +272,9 @@
 	<script src="/public/assets/js/bootstrap-checkbox-radio-switch.js"></script>
 
 	<!--  Charts Plugin -->
-	<script src="/public/assets/js/chartist.min.js"></script>
 
     <!--  Notifications Plugin    -->
     <script src="/public/assets/js/bootstrap-notify.js"></script>
-
-    <!--  Google Maps Plugin    -->
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 
     <!-- Light Bootstrap Table Core javascript and methods for Demo purpose -->
 	<script src="/public/assets/js/light-bootstrap-dashboard.js"></script>
@@ -288,8 +284,6 @@
 
 	<script type="text/javascript">
     	$(document).ready(function(){
-
-        	demo.initChartist();
 
         	$.notify({
             	icon: 'pe-7s-umbrella',

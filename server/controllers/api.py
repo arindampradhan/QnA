@@ -10,8 +10,8 @@ MONGODB_URL = os.environ.get('MONGODB_URL')
 MONGODB_DB = os.environ.get('MONGODB_DATABASE')
 DB = '{0}/{1}'.format(MONGODB_URL, MONGODB_DB)
 client = MongoClient(DB)
-
 db = client.devdb
+
 @app.route('/api/questions')
 def questions():
     q = db.question.find({})

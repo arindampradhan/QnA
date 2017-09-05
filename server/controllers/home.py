@@ -2,12 +2,6 @@
 from server import app
 from flask import render_template, request, send_from_directory
 
-
-# @app.route('/')
-# def start():
-#     return render_template('dashboard.html')
-
-
 @app.route('/user')
 def user():
     return render_template('user.html')
@@ -16,11 +10,6 @@ def user():
 @app.route('/table')
 def table():
     return render_template('table.html')
-
-
-# @app.route('/login')
-# def login():
-#     return render_template('login.html')
 
 
 # dynamic routing for client js files
