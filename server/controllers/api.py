@@ -13,6 +13,7 @@ client = MongoClient(DB)
 db = client.devdb
 
 @app.route('/api/questions')
+@validate_api
 def questions():
     q = db.question.find({})
     qs = list(q)
@@ -20,19 +21,15 @@ def questions():
 
 
 @app.route('/api/answer/<question_id>')
+@validate_api
 def answer(question_id):
     ans = db.answer.find_one({'question_id': question_id})
     ans = bdict(ans)
     return jsonify(ans)
 
-
-# Count number of users and questions
-@app.route('/api/questions/count')
-def question_count():
-    count = db.question.count()
-    return jsonify({'questions': count})
-
-@app.route('/api/users/count')
+@app.route('/api/count')
+@validate_api
 def user_count():
-    count = db.user.count()
-    return jsonify({'users': count})
+    u_count = db.user.count()
+    q_count = db.question.count()
+    return jsonify({'user_count': u_count, 'question_count': q_count})
