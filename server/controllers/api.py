@@ -22,12 +22,30 @@ def rate_limit():
     return jsonify({'checking': 'not crossed the rate limit'})
 
 @app.route('/api/questions')
-@validate_api
+# @validate_api
 @limiter.limit('100 per day')
 def questions():
-    q = db.question.find({})
+    """Aggregate question and answer"""
+    q = db.question.aggregate([{
+        '$lookup': {
+            'from': 'answer',
+            'localField': '_id',
+            'foreignField': 'question_id',
+            'as': 'answers'
+        }}])
+
+    # private filter
     qs = list(q)
-    return bsonify(qs)
+    user_id = session.get('user_id')
+    q2 = []
+    for qsn in qs:
+        if qsn.get('user_id') == user_id and qsn.get('private') is True:
+           q2.append(qsn)
+        elif qsn.get('private') is False:
+            q2.append(qsn)
+        else:
+            pass
+    return bsonify(q2)
 
 
 @app.route('/getuser')
@@ -37,7 +55,8 @@ def get_user():
     return jsonify({
         'username': session.get('username'),
         'api_key': session.get('api_key'),
-        'request_count': session.get('request_count')
+        'request_count': session.get('request_count'),
+        'user_id': session.get('user_id')
     })
 
 @app.route('/api/answer/<question_id>')

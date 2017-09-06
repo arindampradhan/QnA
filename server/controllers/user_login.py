@@ -33,6 +33,7 @@ def login():
     except:
         pass
     if login_user:
+        session['user_id'] = str(login_user.get('_id'))
         session['username'] = request.form['username']
         session['api_key'] = api_key
         return redirect(url_for('index'))
@@ -58,8 +59,9 @@ def register():
         if existing_user is None:
             api_key = str(uuid.uuid4())
             username = request.form['username']
-            db.user.insert({'name': username})
+            user_id = db.user.insert({'name': username})
             db.tenent.insert({'name': username, 'api_key': api_key})
+            session['user_id'] = str(user_id)
             session['username'] = request.form['username']
             session['api_key'] = api_key
             return redirect(url_for('index'))

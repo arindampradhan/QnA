@@ -63,3 +63,7 @@
 .panel-border {
     border: #ef9a9a 1px solid;
 }
+
+.larger {
+    font-size: larger;
+}

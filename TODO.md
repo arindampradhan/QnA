@@ -1,4 +1,4 @@
 # TODOS
 
 * [ ] questions in ui
-* [ ] validate headers with api_key
+* [X] validate headers with api_key
