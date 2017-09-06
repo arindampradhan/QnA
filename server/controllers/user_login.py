@@ -13,6 +13,8 @@ db = client.devdb
 
 @app.route('/')
 def index():
+    if not MONGODB_URL:
+        return jsonify({'error': 'please add an environment file .env in root of project and restart your server.'})
     if 'username' in session:
         return render_template('dashboard.html')
     return redirect(url_for('login'))
