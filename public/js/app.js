@@ -49,4 +49,4 @@ function updateDom() {
 
 // initial point
 $.get('/getuser')
-    .then((response) =>{ store.set('user', response);call_initalization()})
+    .then((response) =>{ store.set('user', response); call_initalization()})

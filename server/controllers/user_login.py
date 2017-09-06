@@ -44,7 +44,7 @@ def message():
 
 @app.route('/logout')
 def logout():
-    del session['username']
+    session.clear()
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['POST', 'GET'])
