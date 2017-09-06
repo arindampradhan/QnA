@@ -35,7 +35,7 @@ def questions():
 @validate_api
 def get_user():
     return jsonify({
-        'user': session.get('username'),
+        'username': session.get('username'),
         'api_key': session.get('api_key'),
         'request_count': session.get('request_count')
     })
