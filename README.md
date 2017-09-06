@@ -1,5 +1,9 @@
 ## QnA
 
+## About
+
+* Please check todos for the task done and left.
+
 ### Features
 
 #### Login

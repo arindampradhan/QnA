@@ -43,7 +43,7 @@ function updateDom() {
 
     // header
     $('#user_name').html(store.get('user')['username'])
-    $('#rate_limit').html(store.get('user')['request_count'])
+    $('#rate_limit').html(store.get('user')['request_count'] || '...')
     $("#api_key").val(store.get('user')['api_key'])
 }
 
@@ -94,5 +94,6 @@ function updateQnA() {
 }
 
 // initial point
+store.clearAll()
 $.get('/getuser')
     .then((response) =>{ store.set('user', response); call_initalization() })
