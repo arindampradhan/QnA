@@ -27,6 +27,11 @@ def login_required(f):
 def validate_api(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        request_count = session.get('request_count')
+        if request_count is None:
+            session['request_count'] = 0
+        else:
+            session['request_count'] += 1
         if session.get('username') is None:
             return jsonify({'error': 'Invalid User', 'status': 503})
         return f(*args, **kwargs)

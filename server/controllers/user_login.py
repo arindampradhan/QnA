@@ -3,6 +3,7 @@ import os
 from server import app
 from pymongo import MongoClient
 from flask import jsonify
+import uuid
 
 MONGODB_URL = os.environ.get('MONGODB_URL')
 MONGODB_DB = os.environ.get('MONGODB_DATABASE')
@@ -24,19 +25,20 @@ def login():
 
     users = db.user
     login_user = users.find_one({'name': request.form['username']})
-
+    api_key = ''
+    try:
+        api_key = db.tenent.find_one({'name': request.form['username']})['api_key']
+    except:
+        pass
     if login_user:
         session['username'] = request.form['username']
+        session['api_key'] = api_key
         return redirect(url_for('index'))
     return render_template('message.html', message='Invalid username', status='503')
 
 @app.route('/message')
 def message():
     return render_template('message.html', message= 'Page not Found', status ='404')
-
-@app.route('/getuser')
-def get_user():
-    return jsonify({'user': session['username']})
 
 @app.route('/logout')
 def logout():
@@ -52,8 +54,12 @@ def register():
         existing_user = db.user.find_one({'name': request.form['username']})
 
         if existing_user is None:
-            db.user.insert({'name': request.form['username']})
+            api_key = str(uuid.uuid4())
+            username = request.form['username']
+            db.user.insert({'name': username})
+            db.tenent.insert({'name': username, 'api_key': api_key})
             session['username'] = request.form['username']
+            session['api_key'] = api_key
             return redirect(url_for('index'))
 
         return render_template('message.html', status='409', message='That username already exists!')
