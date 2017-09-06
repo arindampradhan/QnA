@@ -17,6 +17,7 @@ def bdict(mongo_object):
 
 
 def login_required(f):
+    """to check if user is logged in."""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if session.get('username') is None:
@@ -25,6 +26,7 @@ def login_required(f):
     return decorated_function
 
 def validate_api(f):
+    """Validate apis for different cases."""
     @wraps(f)
     def decorated_function(*args, **kwargs):
         if str(request.headers.get('api_key')) != str(session.get('api_key')):

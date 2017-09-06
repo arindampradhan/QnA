@@ -36,15 +36,23 @@ function fetch_answer(question_id) {
 // update dom
 function updateDom() {
     // cards
-    var q = store.get('count')['question_count']
-    var u = store.get('count')['user_count']
-    $("#user_count").html(u)
-    $("#total_questions").html(q)
+    try {
+        var q = store.get('count')['question_count']
+        var u = store.get('count')['user_count']
+        $("#user_count").html(u)
+        $("#total_questions").html(q)
+    }catch (e) {
+        console.log('card data error!')
+    }
 
     // header
-    $('#user_name').html(store.get('user')['username'])
-    $('#rate_limit').html(store.get('user')['request_count'] || '...')
-    $("#api_key").val(store.get('user')['api_key'])
+    try {
+        $('#user_name').html(store.get('user')['username'])
+        $('#rate_limit').html(store.get('user')['request_count'] || '...')
+        $("#api_key").val(store.get('user')['api_key'])
+    }catch(err) {
+        console.log('error in header data!')
+    }
 }
 
 

@@ -13,6 +13,7 @@ db = client.devdb
 
 @app.route('/')
 def index():
+    """route to dashboard if logged in else login page."""
     if not MONGODB_URL:
         return jsonify({'error': 'please add an environment file .env in root of project and restart your server.'})
     if 'username' in session:
@@ -22,6 +23,7 @@ def index():
 
 @app.route('/login', methods=['POST', 'GET'])
 def login():
+    """login post and get method to validate user"""
     if request.method == 'GET':
         return render_template('login.html')
 
@@ -43,15 +45,18 @@ def login():
 
 @app.route('/message')
 def message():
+    """Default message for user for false response or edge cases."""
     return render_template('message.html', message= 'Page not Found', status ='404')
 
 @app.route('/logout')
 def logout():
+    """Logout as user"""
     session.clear()
     return redirect(url_for('index'))
 
 @app.route('/register', methods=['POST', 'GET'])
 def register():
+    """Register as user, create api_key add to sessions"""
     if session.get('username'):
         return redirect(url_for('index'))
 

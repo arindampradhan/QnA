@@ -64,6 +64,7 @@ def get_user():
 @validate_api
 @limiter.limit('100 per day')
 def answer(question_id):
+    """Answer to a question"""
     ans = db.answer.find_one({'question_id': question_id})
     ans = bdict(ans)
     return jsonify(ans)
@@ -72,6 +73,7 @@ def answer(question_id):
 @validate_api
 @limiter.limit('100 per day')
 def user_count():
+    """Count of users and questions"""
     u_count = db.user.count()
     q_count = db.question.count()
     return jsonify({'user_count': u_count, 'question_count': q_count})
