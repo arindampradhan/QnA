@@ -4,6 +4,17 @@
 
 * Please check todos for the task done and left.
 
+## `Run the project` 
+
+```
+    $ # navigate to root directory of project
+    $ virtualenv venv
+    $ source venv/bin/activate
+    $ pip install -r requirements.txt
+    $ python QnA.py
+    $ # go to http://localhost:5000
+```
+
 ### Features
 
 #### Login
