@@ -19,7 +19,7 @@ limiter = Limiter(app, key_func=get_remote_address)
 @limiter.limit('3 per day')
 @app.route('/api/rate-limit')
 def rate_limit():
-    return jsonify({'checking': 'not crossed the rate limit'})
+    return jsonify({'checking': 'not crossed the rate limit', 'test limit': 3})
 
 @app.route('/api/questions')
 # @validate_api
@@ -56,7 +56,8 @@ def get_user():
         'username': session.get('username'),
         'api_key': session.get('api_key'),
         'request_count': session.get('request_count'),
-        'user_id': session.get('user_id')
+        'user_id': session.get('user_id'),
+        'rate limit': '100 per day'
     })
 
 @app.route('/api/answer/<question_id>')

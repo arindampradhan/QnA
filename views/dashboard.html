@@ -52,9 +52,27 @@
 
             <ul class="nav">
                 <li class="active">
-                    <a href="dashboard.html">
+                    <a href="/" title="dashboard view">
                         <i class="pe-7s-graph"></i>
                         <p>Dashboard</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/getuser" target="_blank">
+                        <i class="pe-7s-user"></i>
+                        <p>/getuser</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/api/rate-limit" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        <p>/api/rate-limit</p>
+                    </a>
+                </li>
+                <li>
+                    <a href="/api/count" target="_blank">
+                        <i class="fa fa-external-link"></i>
+                        <p>/api/count (api_key validated)</p>
                     </a>
                 </li>
 				<li class="active-pro">
@@ -95,12 +113,12 @@
 
                     <ul class="nav navbar-nav navbar-right">
                         <li>
-                           <a href="#">
+                           <a href="#" title="your username">
                                <p id="user_name">User Name</p>
                             </a>
                         </li>
                         <li>
-                            <a href="/logout">
+                            <a href="/logout" title="logout as user">
                                 <p>Log out</p>
                             </a>
                         </li>
