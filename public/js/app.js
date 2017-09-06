@@ -7,14 +7,25 @@ const Model = {
 }
 
 function call_initalization() {
-    $.get('/api/questions')
-        .then((response) => {store.set('questions', response);updateDom() })
+    $.ajax({
+        url: "/api/questions",
+        headers: {"api_key": store.get('user')['api_key']}
+    }).then((response) => {store.set('questions', response);updateDom() })
 
-    $.get('/api/count')
-        .then((response) => { store.set('count', response);updateDom() })
+    $.ajax({
+        url: "/api/count",
+        headers: {"api_key": store.get('user')['api_key']}
+    }).then((response) => { store.set('count', response);updateDom() })
 
-    $.get('/getuser')
-        .then((response) => { store.set('user', response);updateDom() })
+    $.ajax({
+        url: "/getuser",
+        headers: {"api_key": store.get('user')['api_key']}
+    }).then((response) => { store.set('user', response);updateDom() })
+
+    $.ajax({
+        url: "/api/questions",
+        headers: {"api_key": store.get('user')['api_key']}
+    }).then((response)=>{store.set('questions', response)})
 }
 
 function fetch_answer(question_id) {
@@ -30,10 +41,12 @@ function updateDom() {
     $("#user_count").html(u)
     $("#total_questions").html(q)
 
-
     // header
     $('#user_name').html(store.get('user')['username'])
     $('#rate_limit').html(store.get('user')['request_count'])
+    $("#api_key").val(store.get('user')['api_key'])
 }
 
-call_initalization()
+// initial point
+$.get('/getuser')
+    .then((response) =>{ store.set('user', response);call_initalization()})

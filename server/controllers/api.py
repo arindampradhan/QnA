@@ -32,8 +32,8 @@ def questions():
 
 @app.route('/getuser')
 @limiter.limit('100 per day')
-@validate_api
 def get_user():
+    """Inital user data."""
     return jsonify({
         'username': session.get('username'),
         'api_key': session.get('api_key'),

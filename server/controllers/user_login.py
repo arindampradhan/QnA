@@ -27,7 +27,9 @@ def login():
     login_user = users.find_one({'name': request.form['username']})
     api_key = ''
     try:
-        api_key = db.tenent.find_one({'name': request.form['username']})['api_key']
+        tenent = db.tenent.find_one({'name': request.form['username']})
+        if tenent:
+            api_key = tenent['api_key']
     except:
         pass
     if login_user:

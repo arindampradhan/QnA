@@ -1,5 +1,5 @@
 from bson.json_util import dumps
-from flask import g, request, redirect, url_for, jsonify, session
+from flask import g, request, redirect, url_for, jsonify, session, make_response
 from functools import wraps
 import json
 
@@ -27,12 +27,16 @@ def login_required(f):
 def validate_api(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
+        if str(request.headers.get('api_key')) != str(session.get('api_key')):
+            # print(request.headers.get('api_key'))
+            # print(session.get('api_key'))
+            return make_response(jsonify({'error': 'Invalid api_key', 'status': 400}), 400)
         request_count = session.get('request_count')
         if request_count is None:
             session['request_count'] = 0
         else:
             session['request_count'] += 1
         if session.get('username') is None:
-            return jsonify({'error': 'Invalid User', 'status': 503})
+            return make_response(jsonify({'error': 'Invalid User', 'status': 503}), 503)
         return f(*args, **kwargs)
     return decorated_function
