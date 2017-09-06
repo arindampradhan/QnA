@@ -8,6 +8,7 @@
 
 ```
     $ # navigate to root directory of project
+    $ # you need an .env file in root directory containing info about database and etc.
     $ virtualenv venv
     $ source venv/bin/activate
     $ pip install -r requirements.txt
